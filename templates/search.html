@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Jordan's CapStone Project</title>
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}" />
+    </head>
+    <body>
+        {% if param == 'StopCode' %}
+
+        <form action='/search' method='POST'>
+            <input type="text" id="StopCode" name="code" placeholder="Enter Bus Stop Code here..." /><br />
+            <input type='hidden' id='hidden' name='search' value='YESPLEASE' />
+            <input type='hidden' id='searchType' name='searchType' value='busstop' />
+            <input type="submit" value="Submit" />
+        </form>
+
+        {% elif param == 'Location' %}
+
+        <form action='/search' method='POST'>
+            <input type="text" id="Location" name="loc" placeholder="Enter Location Name here..." /><br />
+            <input type='hidden' id='hidden' name='search' value='YESPLEASE' />
+            <input type='hidden' id='searchType' name='searchType' value='location' />
+            <input type="submit" value="Submit" />
+        </form>
+
+        {% elif param == 'Coords' %}
+
+        <form action='/search' method='POST'>
+            <input type="text" id="XCoords" name="x" placeholder="Enter X Coordinate here..." /><br />
+            <input type="text" id="YCoords" name="y" placeholder="Enter Y Coordinate here..." /><br />
+            <input type='hidden' id='hidden' name='search' value='YESPLEASE' />
+            <input type='hidden' id='searchType' name='searchType' value='coords' />
+            <input type="submit" value="Submit" />
+        </form>
+
+        {% else %}
+
+        <h1 class='center'>Look for a Bus Stop!</h1>
+        <form action='/search' method='POST'>
+            <input type="radio" id="StopCode" name="param" value="StopCode" />
+            <label for="StopCode">Bus Stop Code</label><br />
+            <input type="radio" id="Location" name="param" value="Location" />
+            <label for="Location">Location Name</label><br />
+            <input type="radio" id="Coords" name="param" value="Coords" />
+            <label for="Coords">Coordinates</label><br />
+            <input type='submit' value='Submit' />
+        </form>
+
+        {% endif %}
+    </body>
+</html>
