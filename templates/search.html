@@ -10,7 +10,7 @@
         <form action='/search' method='POST'>
             <input type="text" id="StopCode" name="code" placeholder="Enter Bus Stop Code here..." /><br />
             <input type='hidden' id='hidden' name='search' value='YESPLEASE' />
-            <input type='hidden' id='searchType' name='searchType' value='busstop' />
+            <input type='hidden' id='searchType' name='searchType' value='code' />
             <input type="submit" value="Submit" />
         </form>
 
@@ -19,17 +19,17 @@
         <form action='/search' method='POST'>
             <input type="text" id="Location" name="loc" placeholder="Enter Location Name here..." /><br />
             <input type='hidden' id='hidden' name='search' value='YESPLEASE' />
-            <input type='hidden' id='searchType' name='searchType' value='location' />
+            <input type='hidden' id='searchType' name='searchType' value='loc' />
             <input type="submit" value="Submit" />
         </form>
 
         {% elif param == 'Coords' %}
 
         <form action='/search' method='POST'>
-            <input type="text" id="XCoords" name="x" placeholder="Enter X Coordinate here..." /><br />
-            <input type="text" id="YCoords" name="y" placeholder="Enter Y Coordinate here..." /><br />
+            <input type="text" id="XCoords" name="coords[]" placeholder="Enter X Coordinate here..." /><br />
+            <input type="text" id="YCoords" name="coords[]" placeholder="Enter Y Coordinate here..." /><br />
             <input type='hidden' id='hidden' name='search' value='YESPLEASE' />
-            <input type='hidden' id='searchType' name='searchType' value='coords' />
+            <input type='hidden' id='searchType' name='searchType' value='coords[]' />
             <input type="submit" value="Submit" />
         </form>
 

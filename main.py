@@ -21,6 +21,22 @@ def root():
 @app.route('/search', methods=['GET', 'POST'])
 def search():
     if request.form.get('search', False) == 'YESPLEASE':
+        criterion = request.form.get('searchType', "code")
+        params = request.form.getlist(criterion, None)
+        stop = "No Stop Found!"
+        for stoop in stops:
+            if criterion == 'code':
+                if stoop["BusStopCode"] == params[0]:
+                    stop = stoop
+                    break
+            elif criterion == "loc":
+                if stoop["Description"] == params[0]:
+                    stop = stoop
+                    break;
+            elif criterion == "coords":
+                if stoop["Longtitude"] == params[0] and stoop["Latitude"] == params[1]:
+                    stop = stoop
+                    break;
         return render_template('search-busstop.html', stop=stop)
     param = request.form.get('param', None)
     return render_template('search.html', param=param)
