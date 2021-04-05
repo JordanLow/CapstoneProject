@@ -4,13 +4,13 @@ import csv, json
 routes, services, stops = [[],[],[]]
 
 with open('data/bus_routes.json') as f:
-    routes = json.load(f)
+    broutes = json.load(f)
 
 with open('data/bus_services.json') as f:
-    services = json.load(f)
+    bservices = json.load(f)
 
 with open('data/bus_stops.json') as f:
-    stops = json.load(f)
+    bstops = json.load(f)
 
 app = Flask(__name__)
 
@@ -24,7 +24,7 @@ def search():
         criterion = request.form.get('searchType', "code")
         params = request.form.getlist(criterion, None)
         stop = "No Stop Found!"
-        for stoop in stops:
+        for stoop in bstops:
             if criterion == 'code':
                 if stoop["BusStopCode"] == params[0]:
                     stop = stoop
@@ -40,5 +40,17 @@ def search():
         return render_template('search-busstop.html', stop=stop)
     param = request.form.get('param', None)
     return render_template('search.html', param=param)
+
+@app.route('/routes', methods=['GET', 'POST'])
+def routes():
+    stopCode = request.form.get('code', None)
+    buses = set()
+    if stopCode is not None:
+        for route in broutes:
+            if route["BusStopCode"] == stopCode:
+                buses.add(route["ServiceNo"])
+    else:
+        buses = False
+    return render_template('routes.html', buses=buses)
 
 app.run('0.0.0.0')

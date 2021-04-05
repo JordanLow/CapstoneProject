@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Jordan's CapStone Project</title>
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}" />
+    </head>
+    <body>
+        {% if buses == False %}
+        <form action='/routes' method='POST'>
+            <input type="text" id="StopCode" name="code" placeholder="Enter Bus Stop Code here..." /><br />
+            <input type="submit" value="Submit" />
+        </form>
+        {% else %}
+        <div>{{buses}}</div>
+        {% endif %}
+    </body>
+</html>
