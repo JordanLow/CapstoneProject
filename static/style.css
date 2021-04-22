@@ -19,3 +19,28 @@
     background-color: coral;
     font-size: 80px;
 }
+
+
+a.onlytheworthy:link {
+    cursor: default;
+    color: white;
+    text-decoration: none;
+}
+
+a.onlytheworthy:visited {
+    cursor: default;
+    color: white;
+    text-decoration: none;
+}
+
+a.onlytheworthy:hover {
+    cursor: default;
+    color: white;
+    text-decoration: none;
+}
+
+a.onlytheworthy:active {
+    cursor: default;
+    color: white;
+    text-decoration: none;
+}
