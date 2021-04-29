@@ -11,11 +11,15 @@
             <input type="submit" value="Submit" />
         </form>
         {% else %}
+        <h2>Buses at your stop: </h2>
         <div>
             {% for i in buses %}
             <p> {{i[0]}} </p>
             {% endfor %}
         </div>
+        <br />
+        <p><a href="/buses">Back to Buses by Stop</a></p>
+        <p><a href="/">Back to Home</a></p>
         {% endif %}
     </body>
 </html>
