@@ -31,6 +31,16 @@ class BusData(Data):
         cur.execute("SELECT * FROM Stops WHERE BusStopCode == ?", code)
         stop = cur.fetchall()
         conn.close()
+        if len(stop) == 0:
+            return None
+        stop = stop[0]
+        stop = {
+            "Code": stop[0],
+            "Road": stop[1],
+            "Description": stop[2],
+            "Latitude": stop[3],
+            "Longitude": stop[4]
+        }
         return stop
 
     def getStopByDesc(self, desc):
@@ -44,6 +54,16 @@ class BusData(Data):
         cur.execute("SELECT * FROM Stops WHERE Description == ?", desc)
         stop = cur.fetchall()
         conn.close()
+        if len(stop) == 0:
+            return None
+        stop = stop[0]
+        stop = {
+            "Code": stop[0],
+            "Road": stop[1],
+            "Description": stop[2],
+            "Latitude": stop[3],
+            "Longitude": stop[4]
+        }
         return stop
 
     def getStopByCoords(self, coords):
@@ -57,9 +77,26 @@ class BusData(Data):
         cur.execute("SELECT * FROM Stops WHERE Latitude == ? AND Longitude == ?", coords)
         stop = cur.fetchall()
         conn.close()
+        print(stop)
+        if len(stop) == 0:
+            return None
+        stop = stop[0]
+        stop = {
+            "Code": stop[0],
+            "Road": stop[1],
+            "Description": stop[2],
+            "Latitude": stop[3],
+            "Longitude": stop[4]
+        }
         return stop
     
     def getBusesForStop(self, code):
+        """
+        Get a list of buses that service a given stop.
+
+        Usage:
+        getBusesForStop(code) --> Returns a list of buses that service the bus stop of the given code.
+        """
         conn, cur = self.connectSQL()
         cur.execute("SELECT ServiceNo FROM Routes WHERE BusStopCode == ?", (code,))
         buses = cur.fetchall()
@@ -86,6 +123,12 @@ class BusData(Data):
         
 
     def getBusesBetweenStops(self, stop1, stop2):
+        """
+        Get all direct buses between two stops, sorted in ascending order.
+
+        Usage:
+        getBusesBetweenStops(stop1, stop2) --> returns a list of tuples sorted by each tuple's second element. Each tuple's first element is a serviceNo and the second element is the distance the service travels between the two stops. 
+        """
         conn, cur = self.connectSQL()
         cur.execute("SELECT ServiceNo, Distance FROM Routes WHERE BusStopCode == ?", (stop1,))
         route1 = dict(cur.fetchall())

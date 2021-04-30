@@ -10,12 +10,21 @@
             <input type="text" id="StopCode" name="stop1" placeholder="Enter Bus Stop Code here..." /><br /><input type="text" id="StopCode" name="stop2" placeholder="Enter Bus Stop Code here..." />
             <input type="submit" value="Submit" />
         </form>
-        {% else %}
+        <br />
+        {% elif routes|length > 0 %}
         <div>
+            <h2>Direct Buses between your 2 stops: </h2>
             {% for i in routes %}
             <p> {{i}} </p>
             {% endfor %}
-        </div>
+        </div>  
+        <br />
+        <p><a href="/routes">Back to Direct Bus Route Search</a></p>
+        {% else %}
+        <h1>Sorry, it appears that there are either no direct buses between your two stops, or one of your stops does not exist!</h1>
+        <br />
+        <p><a href="/routes">Back to Direct Bus Route Search</a></p>
         {% endif %}
+        <p><a href="/">Back to Home</a></p>
     </body>
 </html>

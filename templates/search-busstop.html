@@ -6,7 +6,19 @@
     </head>
     <body>
         <h1 class='center'><div class='logo'>Es-Bee-Es Two</div> <div class='purple'>Electric Boogaloo</div></h1>
-
-        <div>{{stop}}</div>
+        {% if stop == None %}
+        <h2>Sorry, it does not seem that a stop like that exists!</h2>
+        {% else %}
+        <h2>Your Bus Stop Details: </h2>
+        <div>Bus Stop Code: {{stop["Code"]}} <br />
+        Road: {{stop["Road"]}} <br />
+        Description: {{stop["Description"]}} <br />
+        Latitude: {{stop["Latitiude"]}} <br />
+        Longitude: {{stop["Longitude"]}}
+        </div>
+        {% endif %}
+        <br />
+        <p><a href="/search">Back to Bus Stop Search</a></p>
+        <p><a href="/">Back to Home</a></p>
     </body>
 </html>

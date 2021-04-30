@@ -10,7 +10,8 @@
             <input type="text" id="StopCode" name="code" placeholder="Enter Bus Stop Code here..." /><br />
             <input type="submit" value="Submit" />
         </form>
-        {% else %}
+        <br />
+        {% elif buses|length > 0 %}
         <h2>Buses at your stop: </h2>
         <div>
             {% for i in buses %}
@@ -19,7 +20,11 @@
         </div>
         <br />
         <p><a href="/buses">Back to Buses by Stop</a></p>
-        <p><a href="/">Back to Home</a></p>
+        {% else %}
+        <h1>Sorry, it appears that your bus stop does not exist!</h1>
+        <br />
+        <p><a href="/buses">Back to Buses by Stop</a></p>
         {% endif %}
+        <p><a href="/">Back to Home</a></p>
     </body>
 </html>

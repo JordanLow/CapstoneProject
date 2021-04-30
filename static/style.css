@@ -11,13 +11,12 @@
 }
 
 .BEEGBUTTON {
-    height: 400px;
+    height: 300px;
     width: 80%;
     text-align: center;
-    margin-left: 10%;
-    margin-right: 10%;
+    margin: 10%;
     background-color: coral;
-    font-size: 80px;
+    font-size: 60px;
 }
 
 
